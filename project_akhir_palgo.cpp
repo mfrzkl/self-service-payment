@@ -56,6 +56,15 @@ public:
     }
 };
 
+string generatePaymentCode() {
+    stringstream ss;
+    // Generate a random 6-digit number
+    int randomNum = rand() % 900000 + 100000;
+    // Convert the number to string and format it with leading zeros
+    ss << setw(6) << setfill('0') << randomNum;
+    return ss.str();
+}
+
 int binarySearch(const Item arr[], int left, int right, string key) {
     if (right >= left) {
         int mid = left + (right - left) / 2;
@@ -81,7 +90,13 @@ int main() {
     // Menginisialisasi menu
     const int MAX_MENU = 10;  // Jumlah maksimum menu kopi
     Item menu[MAX_MENU] = {
-        {"Espresso", 50000.0, {"Caramel", "Vanilla"}},
+        {"Caramel Mocha", 49000.0, {"Caramel", "Vanilla"}},
+        {"Green Tea", 50000.0, {"Vanilla", "cream"}},
+        {"Brewed Coffe", 48000.0, {"Vanilla", "Caramel"}},
+        {"Caramel Macchiato", 59000.0, {"Caramel", "Chocolate"}},
+        {"Java Chip Frappucino", 58000.0, {"Hazelnut", "Chocolate"}},
+        {"Signature Chocolate", 53000.0, {"Caramel", "Chocolate"}},
+        {"Espresso", 50000.0, {"Caramel", "Vanilla",}},
         {"Cappuccino", 55000.0, {"Chocolate", "Hazelnut"}},
         {"Cafe Latte", 60000.0, {"Caramel", "Vanilla", "Hazelnut"}},
         {"Mocha", 65000.0, {"Chocolate", "Caramel"}},
@@ -211,7 +226,11 @@ int main() {
         cout << "Nama Pemesan: " << namaPemesan << endl;
         cout << "Nomor Antrian: " << antrian.front().nomorAntrian << endl;
         cout << "Waktu Pemesanan: " << asctime(localtime(&antrian.front().waktuPemesanan)) << endl;
-
+        
+        // Generate payment code
+        string paymentCode = generatePaymentCode();
+        cout << "kode pemesanan: " << paymentCode << endl;
+        
         // Menampilkan antrian pemesanan
         LinkedList list;
         while (!antrian.empty()) {
