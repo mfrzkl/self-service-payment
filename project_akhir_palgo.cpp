@@ -90,7 +90,13 @@ int main() {
     // Menginisialisasi menu
     const int MAX_MENU = 10;  // Jumlah maksimum menu kopi
     Item menu[MAX_MENU] = {
-        {"Espresso", 50000.0, {"Caramel", "Vanilla"}},
+        {"Caramel Mocha", 49000.0, {"Caramel", "Vanilla"}},
+        {"Green Tea", 50000.0, {"Vanilla", "cream"}},
+        {"Brewed Coffe", 48000.0, {"Vanilla", "Caramel"}},
+        {"Caramel Macchiato", 59000.0, {"Caramel", "Chocolate"}},
+        {"Java Chip Frappucino", 58000.0, {"Hazelnut", "Chocolate"}},
+        {"Signature Chocolate", 53000.0, {"Caramel", "Chocolate"}},
+        {"Espresso", 50000.0, {"Caramel", "Vanilla",}},
         {"Cappuccino", 55000.0, {"Chocolate", "Hazelnut"}},
         {"Cafe Latte", 60000.0, {"Caramel", "Vanilla", "Hazelnut"}},
         {"Mocha", 65000.0, {"Chocolate", "Caramel"}},
