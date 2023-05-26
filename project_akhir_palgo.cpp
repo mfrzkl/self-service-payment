@@ -56,6 +56,15 @@ public:
     }
 };
 
+string generatePaymentCode() {
+    stringstream ss;
+    // Generate a random 6-digit number
+    int randomNum = rand() % 900000 + 100000;
+    // Convert the number to string and format it with leading zeros
+    ss << setw(6) << setfill('0') << randomNum;
+    return ss.str();
+}
+
 int binarySearch(const Item arr[], int left, int right, string key) {
     if (right >= left) {
         int mid = left + (right - left) / 2;
