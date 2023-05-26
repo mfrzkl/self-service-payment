@@ -226,7 +226,11 @@ int main() {
         cout << "Nama Pemesan: " << namaPemesan << endl;
         cout << "Nomor Antrian: " << antrian.front().nomorAntrian << endl;
         cout << "Waktu Pemesanan: " << asctime(localtime(&antrian.front().waktuPemesanan)) << endl;
-
+        
+        // Generate payment code
+        string paymentCode = generatePaymentCode();
+        cout << "kode pemesanan: " << paymentCode << endl;
+        
         // Menampilkan antrian pemesanan
         LinkedList list;
         while (!antrian.empty()) {
