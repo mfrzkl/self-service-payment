@@ -28,24 +28,31 @@ Features
 Examples
 --------
 
-```c++
-#include <string>
-#include <vector>
-#include "QrCode.hpp"
-using namespace qrcodegen;
+```
+     (  )   (   )  )
+      ) (   )  (  (
+      ( )  (    ) )
+      _____________
+     <_____________> ___
+     |             |/ _ \
+     |               | | |
+     |               |_| |
+  ___|             |\___/
+ /    \___________/    \
+ \___________________/   Selamat datang di Coffee Shop
+ 
+1. Brewed Coffe - Rp48000.00
+2. Cafe Latte - Rp60000.00
+3. Cappuccino - Rp55000.00
+4. Caramel Macchiato - Rp59000.00
+5. Caramel Mocha - Rp49000.00
+6. Espresso - Rp50000.00
+7. Green Tea - Rp50000.00
+8. Java Chip Frappucino - Rp58000.00
+9. Mocha - Rp65000.00
+10. Signature Chocolate - Rp53000.00
 
-// Simple operation
-QrCode qr0 = QrCode::encodeText("Hello, world!", QrCode::Ecc::MEDIUM);
-std::string svg = toSvgString(qr0, 4);  // See QrCodeGeneratorDemo
-
-// Manual operation
-std::vector<QrSegment> segs =
-    QrSegment::makeSegments("3141592653589793238462643383");
-QrCode qr1 = QrCode::encodeSegments(
-    segs, QrCode::Ecc::HIGH, 5, 5, 2, false);
-for (int y = 0; y < qr1.getSize(); y++) {
-    for (int x = 0; x < qr1.getSize(); x++) {
-        (... paint qr1.getModule(x, y) ...)
-    }
-}
+1. Pesan
+2. Cari Kopi
+Pilih (1/2): 
 ```
