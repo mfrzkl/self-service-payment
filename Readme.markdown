@@ -1,4 +1,4 @@
-###Coffee Shop Self Service Payment
+Coffee Shop Self Service Payment
 ================================
 1. Miftah Rizky Aulia               (2210511022)
 2. Muhammad Dihya Al Qalby          (2210511030)
