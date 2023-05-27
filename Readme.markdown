@@ -1,11 +1,11 @@
-Coffee Shop Self Service Payment
+###Coffee Shop Self Service Payment
 ================================
-1. Miftah Rizky Aulia       (2210511022)
-2. Muhammad Dihya Al-Qolby  (2210511030)
-3. Sufyan
+1. Miftah Rizky Aulia               (2210511022)
+2. Muhammad Dihya Al Qalby          (2210511030)
+3. Sufyan Al Afi
 4. Nada Nabila
-5. Firda
-6. Samuel
+5. Firda Fahria
+6. Samuel Alexande Mozes Tambunan
 
 Introduction
 ------------
@@ -15,8 +15,6 @@ Project Coffee Shop Self Service Payment dibuat untuk memenuhi tugas akhir mata 
 
 Features
 --------
-
-Tentu! Berikut adalah daftar fitur-fitur yang ada dalam program ini dengan bahasa yang lebih santai:
 
 1. ``Menampilkan Menu Kopi``: Kamu bisa melihat daftar menu kopi beserta harganya.
 2. ``Mencari Kopi``: Jika kamu tidak tahu nama kopi yang ingin dipesan, kamu bisa mencarinya di sini.
