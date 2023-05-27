@@ -9,6 +9,7 @@ struct Item {
     string nama;
     double harga;
     vector<string> toping;
+    vector<string> ukuranGelas;
 };
 
 struct Order {
@@ -90,16 +91,16 @@ int main() {
     // Menginisialisasi menu
     const int MAX_MENU = 10;  // Jumlah maksimum menu kopi
     Item menu[MAX_MENU] = {
-        {"Caramel Mocha", 49000.0, {"Caramel", "Vanilla"}},
-        {"Green Tea", 50000.0, {"Vanilla", "cream"}},
-        {"Brewed Coffe", 48000.0, {"Vanilla", "Caramel"}},
-        {"Caramel Macchiato", 59000.0, {"Caramel", "Chocolate"}},
-        {"Java Chip Frappucino", 58000.0, {"Hazelnut", "Chocolate"}},
-        {"Signature Chocolate", 53000.0, {"Caramel", "Chocolate"}},
-        {"Espresso", 50000.0, {"Caramel", "Vanilla",}},
-        {"Cappuccino", 55000.0, {"Chocolate", "Hazelnut"}},
-        {"Cafe Latte", 60000.0, {"Caramel", "Vanilla", "Hazelnut"}},
-        {"Mocha", 65000.0, {"Chocolate", "Caramel"}},
+        {"Caramel Mocha", 49000.0, {"Caramel", "Vanilla"}, {"Tall", "Grande", "Venti"}},
+        {"Green Tea", 50000.0, {"Vanilla", "Cream"}, {"Tall", "Grande", "Venti"}},
+        {"Brewed Coffe", 48000.0, {"Vanilla", "Caramel"}, {"Tall", "Grande", "Venti"}},
+        {"Caramel Macchiato", 59000.0, {"Caramel", "Chocolate"}, {"Tall", "Grande", "Venti"}},
+        {"Java Chip Frappucino", 58000.0, {"Hazelnut", "Chocolate"}, {"Tall", "Grande", "Venti"}},
+        {"Signature Chocolate", 53000.0, {"Caramel", "Chocolate"}, {"Tall", "Grande", "Venti"}},
+        {"Espresso", 50000.0, {"Caramel", "Vanilla",}, {"Tall", "Grande", "Venti"}},
+        {"Cappuccino", 55000.0, {"Chocolate", "Hazelnut"}, {"Tall", "Grande", "Venti"}},
+        {"Cafe Latte", 60000.0, {"Caramel", "Vanilla", "Hazelnut"}, {"Tall", "Grande", "Venti"}},
+        {"Mocha", 65000.0, {"Chocolate", "Caramel"}, {"Tall", "Grande", "Venti"}}
         // Tambahkan menu kopi lainnya di sini
     };
 
@@ -151,14 +152,22 @@ int main() {
                 cin >> pilihanMenu;
             }
 
+           // Menampilkan menu untuk memilih ukuran gelas
+             int index = pilihanMenu - 1;
+            cout << "\nPilih Ukuran Gelas Untuk " << menu[index].nama << ":\n";
+            for (int i = 0; i < menu[index].ukuranGelas.size(); i++) {
+                cout << i + 1 << ". " << menu[index].ukuranGelas[i] << "- Rp" << fixed << setprecision(2) << (i + 1) * 1000.0 << endl;
+            }
+
+            cout << "Masukkan Ukuran Gelas yang Anda Pilih: ";
+            cin >> jumlah[jumlahPesanan];
+
             // Menampilkan menu toping untuk menu kopi yang dipilih
-            int index = pilihanMenu - 1;
-            cout << "Menu Toping untuk " << menu[index].nama << ":\n";
+            cout << "\nMenu Toping untuk " << menu[index].nama << ":\n";
             for (int i = 0; i < menu[index].toping.size(); i++) {
                 cout << i + 1 << ". " << menu[index].toping[i] << " - Rp" << fixed << setprecision(2) << (i + 1) * 1000.0 << endl;
             }
-
-            cout << "Masukkan jumlah pesanan: ";
+            cout << "Masukkan Topping yang Anda Inginkan: ";
             cin >> jumlah[jumlahPesanan];
 
             pilihan[jumlahPesanan] = pilihanMenu;
