@@ -1,37 +1,26 @@
-QR Code generator library - C++
-===============================
+Coffee Shop Self Service Payment
+================================
 
 
 Introduction
 ------------
 
-This project aims to be the best, clearest QR Code generator library. The primary goals are flexible options and absolute correctness. Secondary goals are compact implementation size and good documentation comments.
-
-Home page with live JavaScript demo, extensive descriptions, and competitor comparisons: https://www.nayuki.io/page/qr-code-generator-library
+Project Coffee Shop Self Service Payment dibuat untuk memenuhi tugas akhir mata kuliah praktikum algoritma dan pemrograman 2
 
 
 Features
 --------
 
-Core features:
+Tentu! Berikut adalah daftar fitur-fitur yang ada dalam program ini dengan bahasa yang lebih santai:
 
-* Significantly shorter code but more documentation comments compared to competing libraries
-* Supports encoding all 40 versions (sizes) and all 4 error correction levels, as per the QR Code Model 2 standard
-* Output format: Raw modules/pixels of the QR symbol
-* Detects finder-like penalty patterns more accurately than other implementations
-* Encodes numeric and special-alphanumeric text in less space than general text
-* Coded carefully to prevent memory corruption, integer overflow, platform-dependent inconsistencies, and undefined behavior; tested rigorously to confirm safety
-* Open-source code under the permissive MIT License
-
-Manual parameters:
-
-* User can specify minimum and maximum version numbers allowed, then library will automatically choose smallest version in the range that fits the data
-* User can specify mask pattern manually, otherwise library will automatically evaluate all 8 masks and select the optimal one
-* User can specify absolute error correction level, or allow the library to boost it if it doesn't increase the version number
-* User can create a list of data segments manually and add ECI segments
-
-More information about QR Code technology and this library's design can be found on the project home page.
-
+1. ``Menampilkan Menu Kopi``: Kamu bisa melihat daftar menu kopi beserta harganya.
+2. ``Mencari Kopi``: Jika kamu tidak tahu nama kopi yang ingin dipesan, kamu bisa mencarinya di sini.
+3. ``Memesan Kopi``: Kamu bisa memesan kopi dengan memilih menu yang diinginkan. Program akan meminta kamu memasukkan ukuran gelas dan topping yang diinginkan.
+4. ``Menghitung Total Pembayaran``: Setelah memesan, program akan menghitung total pembayaran sebelum pajak berdasarkan pesanan yang kamu pilih.
+5. ``Memilih Metode Pembayaran``: Kamu bisa memilih metode pembayaran antara tunai atau debit.
+6. ``Pembayaran dengan QRIS``: Jika kamu memilih metode pembayaran QRIS, program akan menghasilkan kode pembayaran dan menampilkan QR code yang dapat dipindai.
+7. ``Mencetak Struk Pembayaran``: Program akan mencetak struk pembayaran yang berisi daftar pesanan, total pembayaran, pajak, total pembayaran setelah pajak, metode pembayaran, nama pemesan, nomor antrian, dan waktu pemesanan.
+8. ``Antrian Pemesanan``: Program akan menampilkan antrian pemesanan yang berisi nama pemesan, nomor antrian, dan waktu pemesanan.
 
 Examples
 --------
@@ -57,5 +46,3 @@ for (int y = 0; y < qr1.getSize(); y++) {
     }
 }
 ```
-
-More complete set of examples: https://github.com/nayuki/QR-Code-generator/blob/master/cpp/QrCodeGeneratorDemo.cpp .
