@@ -1,6 +1,11 @@
 Coffee Shop Self Service Payment
 ================================
-
+1. Miftah Rizky Aulia       (2210511022)
+2. Muhammad Dihya Al-Qolby  (2210511030)
+3. Sufyan
+4. Nada Nabila
+5. Firda
+6. Samuel
 
 Introduction
 ------------
