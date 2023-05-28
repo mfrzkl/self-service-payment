@@ -3,6 +3,8 @@
 #include <vector>
 #include <queue>
 #include <ctime>
+#include <algorithm>
+#include "qrcodegen.hpp"
 using namespace std;
 
 struct Item {
@@ -60,7 +62,7 @@ public:
 string generatePaymentCode() {
     stringstream ss;
     // Generate a random 6-digit number
-    int randomNum = rand() % 900000 + 100000;
+    int randomNum = rand() % 900000 + 1000000;
     // Convert the number to string and format it with leading zeros
     ss << setw(6) << setfill('0') << randomNum;
     return ss.str();
@@ -198,7 +200,7 @@ int main() {
         cout << "Pilih metode pembayaran (1/2): ";
         cin >> metodePembayaran;
 
-        while (metodePembayaran != '1' && metodePembayaran != '2') {
+        while (metodePembayaran != '1' && metodePembayaran != '2' && metodePembayaran != '3') {
             cout << "Pilihan tidak valid. Pilih metode pembayaran (1/2): ";
             cin >> metodePembayaran;
         }
