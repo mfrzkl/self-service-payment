@@ -158,10 +158,14 @@ int main() {
             }
 
            // Menampilkan menu untuk memilih ukuran gelas
-             int index = pilihanMenu - 1;
+            int index = pilihanMenu - 1;
             cout << "\nPilih Ukuran Gelas Untuk " << menu[index].nama << ":\n";
+            cout << setw(4) << left << "No" << setw(20) << left << "Ukuran Gelas" << setw(15) << right << "\t\tHarga" << endl;
+            cout << "-----------------------------------------------" << endl;
             for (int i = 0; i < menu[index].ukuranGelas.size(); i++) {
-                cout << i + 1 << ". " << menu[index].ukuranGelas[i] << "- Rp" << fixed << setprecision(2) << (i + 1) * 1000.0 << endl;
+                cout << setw(4) << left << i + 1;
+                cout << setw(20) << left << menu[index].ukuranGelas[i];
+                cout << setw(15) << right << "Rp" << fixed << setprecision(2) << (i + 1) * 1000.0 << endl;
             }
 
             cout << "Masukkan Ukuran Gelas yang Anda Pilih: ";
@@ -169,14 +173,19 @@ int main() {
 
             // Menampilkan menu toping untuk menu kopi yang dipilih
             cout << "\nMenu Toping untuk " << menu[index].nama << ":\n";
+            cout << setw(4) << left << "No" << setw(20) << left << "Topping" << setw(15) << right << "Harga" << endl;
+            cout << "-----------------------------------------------" << endl;
             for (int i = 0; i < menu[index].toping.size(); i++) {
-                cout << i + 1 << ". " << menu[index].toping[i] << " - Rp" << fixed << setprecision(2) << (i + 1) * 1000.0 << endl;
+                cout << setw(4) << left << i + 1;
+                cout << setw(20) << left << menu[index].toping[i];
+                cout << setw(15) << right << "Rp" << fixed << setprecision(2) << (i + 1) * 1000.0 << endl;
             }
             cout << "Masukkan Topping yang Anda Inginkan: ";
             cin >> jumlah[jumlahPesanan];
-
+            
             pilihan[jumlahPesanan] = pilihanMenu;
             jumlahPesanan++;
+
 
             cout << "Apakah Anda ingin menambah pesanan lain? (Y/N): ";
             cin >> lanjutkan;
