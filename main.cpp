@@ -204,6 +204,19 @@ int main() {
             cout << "Pilihan tidak valid. Pilih metode pembayaran (1/2): ";
             cin >> metodePembayaran;
         }
+        
+        if (metodePembayaran == '3') {
+        // Generate payment code
+        string paymentCode = generatePaymentCode();
+        cout << "Kode Pemesanan: " << paymentCode << endl;
+
+        // Generate QR code from payment code
+        string qrText = "QRIS:" + paymentCode;
+
+        // Menampilkan QR code
+        cout << "\nQR Code Pembayaran:\n";
+        displayQRCode(qrText);
+    	}
 
         // Menginput nama pemesan
         string namaPemesan;
