@@ -115,9 +115,14 @@ int main() {
 
     // Menampilkan menu
     cout << "Menu:\n";
+    cout << setw(4) << left << "No" << setw(20) << left << "Nama Menu" << setw(15) << right << "\t\tHarga" << endl;
+    cout << "--------------------------------------------------" << endl;
     for (int i = 0; i < MAX_MENU; i++) {
-        cout << i + 1 << ". " << menu[i].nama << " - Rp" << fixed << setprecision(2) << menu[i].harga << endl;
+        cout << setw(4) << left << i + 1;
+        cout << setw(20) << left << menu[i].nama;
+        cout << setw(15) << right << "Rp" << fixed << setprecision(2) << menu[i].harga << endl;
     }
+
 
     // Memilih fitur awal (Menu / Cari Kopi)
     int fiturAwal;
