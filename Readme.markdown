@@ -50,20 +50,39 @@ Examples
      |               |_| |
   ___|             |\___/
  /    \___________/    \
- \___________________/   Selamat datang di Coffee Shop
- 
-1. Brewed Coffe - Rp48000.00
-2. Cafe Latte - Rp60000.00
-3. Cappuccino - Rp55000.00
-4. Caramel Macchiato - Rp59000.00
-5. Caramel Mocha - Rp49000.00
-6. Espresso - Rp50000.00
-7. Green Tea - Rp50000.00
-8. Java Chip Frappucino - Rp58000.00
-9. Mocha - Rp65000.00
-10. Signature Chocolate - Rp53000.00
-
+ \___________________/   
+ Selamat datang di Coffee Shop
+_________________________________________________________
+|           Menu               Tall    Grande     Venti  |
+|________________________________________________________|
+| 1. Brewed Coffe               48        51        54   |
+| 2. Cafe Latte                 54        57        60   |    
+| 3. Cappuccino                 55        58        61   |
+| 4. Caramel Macchiato          56        59        62   |  
+| 5. Caramel Mocha              49        52        55   |
+| 6. Espresso                   50        53        56   |
+| 7. Green Tea                  50        53        56   |
+| 8. Java Chip Frappucino       50        53        56   |
+| 9. Mocha                      65        68        71   |
+| 10. Signature Chocolate       53        56        59   |
+|________________________________________________________|
 1. Pesan
 2. Cari Kopi
 Pilih (1/2): 
 ```
+```
+========== Struk Pembayaran ==============
+Brewed Coffe            1 x Rp48,000
+Cafe Latte              1 x Rp57,000
+==========================================
+Total Pembayaran:        Rp48,000
+Pajak (5%):              Rp2,400
+
+
+Total                    Rp50,400
+==========================================
+Metode Pembayaran: QRIS
+Nama Pemesan: Miftah
+Nomor Antrian: M03
+Waktu Pemesanan: Mon May 29 12:40:05 2023
+==========================================
