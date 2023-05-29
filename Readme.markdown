@@ -16,9 +16,13 @@ Commands
 ------------
 
 Untuk Mengcompile Program:
-```g++ main.cpp qrcodegen.cpp -o main```
+```
+g++ main.cpp qrcodegen.cpp -o main
+```
 Jalankan program:
-```./main```
+```
+./main
+```
 
 Features
 --------
