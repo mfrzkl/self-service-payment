@@ -12,6 +12,13 @@ Introduction
 
 Project Coffee Shop Self Service Payment dibuat untuk memenuhi tugas akhir mata kuliah praktikum algoritma dan pemrograman 2
 
+Commands
+------------
+
+Untuk Mengcompile Program:
+```g++ main.cpp qrcodegen.cpp -o main```
+Jalankan program:
+```./main```
 
 Features
 --------
