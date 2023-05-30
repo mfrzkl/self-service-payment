@@ -50,8 +50,7 @@ public:
         while (current != nullptr) {
             cout << "Nama Pemesan: " << current->data.nama << endl;
             cout << "Nomor Antrian: " << current->data.nomorAntrian << endl;
-            cout << "Waktu Pemesanan: " << asctime(localtime(&current->data.waktuPemesanan)) << endl;
-            cout << "-------------------------" << endl;
+            cout << "Waktu Pemesanan: " << asctime(localtime(&current->data.waktuPemesanan));
             current = current->next;
         }
     }
@@ -235,24 +234,19 @@ int main() {
         }
 
         // Menampilkan struk pembayaran
-        cout << "\n===== Struk Pembayaran =====\n";
+        cout << "==================================================\n";
+        cout << "================= Struk Pembayaran ===============\n";
         for (int i = 0; i < jumlahPesanan; i++) {
             int index = pilihan[i] - 1;
-            cout << setw(15) << left << menu[index].nama << setw(10) << right << jumlah[i] << " x Rp" << fixed << setprecision(2) << menu[index].harga << endl;
+            cout << setw(15) << left << menu[index].nama << setw(19) << right << jumlah[i] << " x Rp" << fixed << setprecision(2) << menu[index].harga << endl;
         }
-        cout << "============================\n";
-        cout << setw(15) << left << "Total Pembayaran:" << setw(10) << right << "Rp" << fixed << setprecision(2) << totalPembayaran << endl;
-        cout << setw(15) << left << "Pajak (5%):" << setw(10) << right << "Rp" << fixed << setprecision(2) << pajak << endl;
-        cout << setw(15) << left << "Total Pembayaran Setelah Pajak:" << setw(10) << right << "Rp" << fixed << setprecision(2) << totalPembayaranSetelahPajak << endl;
-        cout << "============================\n";
-        cout << "Metode Pembayaran: " << (metodePembayaran == '1' ? "Tunai" : "Debit") << endl;
-        cout << "Nama Pemesan: " << namaPemesan << endl;
-        cout << "Nomor Antrian: " << antrian.front().nomorAntrian << endl;
-        cout << "Waktu Pemesanan: " << asctime(localtime(&antrian.front().waktuPemesanan)) << endl;
-        
-        // Generate payment code
-        string paymentCode = generatePaymentCode();
-        cout << "kode pemesanan: " << paymentCode << endl;
+        cout << "==================================================\n";
+        cout << setw(15) << left << "Total Pembayaran:" << setw(22) << right << "Rp" << fixed << setprecision(2) << totalPembayaran << endl;
+        cout << setw(15) << left << "Pajak (5%):" << setw(24) << right << "Rp" << fixed << setprecision(2) << pajak << endl;
+        cout << setw(15) << left << "Total :" << setw(24) << right << "Rp" << fixed << setprecision(2) << totalPembayaranSetelahPajak << endl;
+        cout << "==================================================\n";
+        cout << "Metode Pembayaran: " << (metodePembayaran == '1' ? "Tunai" : "Debit") << endl;  
+        cout << "==================================================";
         
         // Menampilkan antrian pemesanan
         LinkedList list;
@@ -260,7 +254,7 @@ int main() {
             list.insert(antrian.front());
             antrian.pop();
         }
-        cout << "\nAntrian Pemesanan:\n";
+        cout << "\nPemesan";
         list.display();
     } else if (fiturAwal == 2) {
         // Mencari kopi berdasarkan nama
@@ -281,8 +275,15 @@ int main() {
         } else {
             cout << "Kopi tidak ditemukan.\n";
         }
-    }
-
+    }   
+    
+        // Generate payment code
+        cout << "==================================================\n";
+        string paymentCode = generatePaymentCode();
+        cout << "kode pemesanan: " << paymentCode << endl;
+        cout << "==================================================\n";
+    
+    
     return 0;
 }
 
