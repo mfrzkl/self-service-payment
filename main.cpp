@@ -1,15 +1,22 @@
 #include <iostream>
 #include <iomanip>
-#include <vector>
-#include <queue>
 #include <ctime>
+#include <sstream>
+#include <fstream>
 using namespace std;
 
 struct Item {
     string nama;
-    double harga;
-    vector<string> toping;
-    vector<string> ukuranGelas;
+    double harga[3];
+    string toping[3];
+    string ukuranGelas[3];
+};
+
+struct db {
+    string db_nama;
+    double db_harga[3];
+    string db_toping[3];
+    string db_ukuranGelas[3];
 };
 
 struct Order {
@@ -18,92 +25,55 @@ struct Order {
     time_t waktuPemesanan;
 };
 
-struct Node {
-    Order data;
-    Node* next;
-};
-
-class LinkedList {
-private:
-    Node* head;
-public:
-    LinkedList() : head(nullptr) {}
-
-    void insert(Order data) {
-        Node* newNode = new Node;
-        newNode->data = data;
-        newNode->next = nullptr;
-
-        if (head == nullptr) {
-            head = newNode;
-        } else {
-            Node* temp = head;
-            while (temp->next != nullptr) {
-                temp = temp->next;
-            }
-            temp->next = newNode;
-        }
-    }
-
-    void display() {
-        Node* current = head;
-        while (current != nullptr) {
-            cout << "Nama Pemesan: " << current->data.nama << endl;
-            cout << "Nomor Antrian: " << current->data.nomorAntrian << endl;
-            cout << "Waktu Pemesanan: " << asctime(localtime(&current->data.waktuPemesanan));
-            current = current->next;
-        }
-    }
-};
-
 string generatePaymentCode() {
     stringstream ss;
-    // Generate a random 6-digit number
     int randomNum = rand() % 900000 + 100000;
-    // Convert the number to string and format it with leading zeros
     ss << setw(6) << setfill('0') << randomNum;
     return ss.str();
 }
 
-int binarySearch(const Item arr[], int left, int right, string key) {
-    if (right >= left) {
-        int mid = left + (right - left) / 2;
-
-        if (arr[mid].nama == key) {
-            return mid;
+int sequentialSearch(const db arr[], int n, string key) {
+    for (int i = 0; i < n; i++) {
+        if (arr[i].db_nama == key) {
+            return i;
         }
-
-        if (arr[mid].nama > key) {
-            return binarySearch(arr, left, mid - 1, key);
-        }
-
-        return binarySearch(arr, mid + 1, right, key);
     }
-
     return -1;
 }
 
 int main() {
-    // Menampilkan pesan selamat datang
-    cout << "Selamat datang di Coffee Shop\n";
+    cout << "Self Service System on Coffee Shop\n\n";
 
-    // Menginisialisasi menu
-    const int MAX_MENU = 10;  // Jumlah maksimum menu kopi
+    const int db_coffee = 10;
+    db dbmenu[db_coffee] = {
+        {"Caramel Mocha", {49000.0, 52000.0, 55000.0}, {"Caramel", "Vanilla"}, {"Tall", "Grande", "Venti"}},
+        {"Green Tea", {50000.0, 53000.0, 56000.0}, {"Vanilla", "Cream"}, {"Tall", "Grande", "Venti"}},
+        {"Brewed Coffee", {48000.0, 51000.0, 54000.0}, {"Vanilla", "Caramel"}, {"Tall", "Grande", "Venti"}},
+        {"Caramel Macchiato", {59000.0, 62000.0, 65000.0}, {"Caramel", "Chocolate"}, {"Tall", "Grande", "Venti"}},
+        {"Java Chip Frappuccino", {58000.0, 61000.0, 64000.0}, {"Hazelnut", "Chocolate"}, {"Tall", "Grande", "Venti"}},
+        {"Signature Chocolate", {53000.0, 56000.0, 59000.0}, {"Caramel", "Chocolate"}, {"Tall", "Grande", "Venti"}},
+        {"Espresso", {50000.0, 53000.0, 56000.0}, {"Caramel", "Vanilla"}, {"Tall", "Grande", "Venti"}},
+        {"Cappuccino", {55000.0, 58000.0, 61000.0}, {"Chocolate", "Hazelnut"}, {"Tall", "Grande", "Venti"}},
+        {"Cafe Latte", {60000.0, 63000.0, 66000.0}, {"Caramel", "Vanilla", "Hazelnut"}, {"Tall", "Grande", "Venti"}},
+        {"Mocha", {65000.0, 68000.0, 71000.0}, {"Chocolate", "Caramel"}, {"Tall", "Grande", "Venti"}}
+        // Add other coffee menus here
+    };
+    
+    const int MAX_MENU = 10;
     Item menu[MAX_MENU] = {
-        {"Caramel Mocha", 49000.0, {"Caramel", "Vanilla"}, {"Tall", "Grande", "Venti"}},
-        {"Green Tea", 50000.0, {"Vanilla", "Cream"}, {"Tall", "Grande", "Venti"}},
-        {"Brewed Coffe", 48000.0, {"Vanilla", "Caramel"}, {"Tall", "Grande", "Venti"}},
-        {"Caramel Macchiato", 59000.0, {"Caramel", "Chocolate"}, {"Tall", "Grande", "Venti"}},
-        {"Java Chip Frappucino", 58000.0, {"Hazelnut", "Chocolate"}, {"Tall", "Grande", "Venti"}},
-        {"Signature Chocolate", 53000.0, {"Caramel", "Chocolate"}, {"Tall", "Grande", "Venti"}},
-        {"Espresso", 50000.0, {"Caramel", "Vanilla",}, {"Tall", "Grande", "Venti"}},
-        {"Cappuccino", 55000.0, {"Chocolate", "Hazelnut"}, {"Tall", "Grande", "Venti"}},
-        {"Cafe Latte", 60000.0, {"Caramel", "Vanilla", "Hazelnut"}, {"Tall", "Grande", "Venti"}},
-        {"Mocha", 65000.0, {"Chocolate", "Caramel"}, {"Tall", "Grande", "Venti"}}
-        // Tambahkan menu kopi lainnya di sini
+        {"Caramel Mocha\t\t\t\t", {49000.0, 52000.0, 55000.0}, {"Caramel", "Vanilla"}, {"Tall", "Grande", "Venti"}},
+        {"Green Tea\t\t\t\t\t", {50000.0, 53000.0, 56000.0}, {"Vanilla", "Cream"}, {"Tall", "Grande", "Venti"}},
+        {"Brewed Coffee\t\t\t\t", {48000.0, 51000.0, 54000.0}, {"Vanilla", "Caramel"}, {"Tall", "Grande", "Venti"}},
+        {"Caramel Macchiato\t\t\t", {59000.0, 62000.0, 65000.0}, {"Caramel", "Chocolate"}, {"Tall", "Grande", "Venti"}},
+        {"Java Chip Frappuccino\t\t", {58000.0, 61000.0, 64000.0}, {"Hazelnut", "Chocolate"}, {"Tall", "Grande", "Venti"}},
+        {"Signature Chocolate\t\t", {53000.0, 56000.0, 59000.0}, {"Caramel", "Chocolate"}, {"Tall", "Grande", "Venti"}},
+        {"Espresso\t\t\t\t\t", {50000.0, 53000.0, 56000.0}, {"Caramel", "Vanilla"}, {"Tall", "Grande", "Venti"}},
+        {"Cappuccino\t\t\t\t\t", {55000.0, 58000.0, 61000.0}, {"Chocolate", "Hazelnut"}, {"Tall", "Grande", "Venti"}},
+        {"Cafe Latte\t\t\t\t\t", {60000.0, 63000.0, 66000.0}, {"Caramel", "Vanilla"}, {"Tall", "Grande", "Venti"}},
+        {"Mocha\t\t\t\t\t\t", {65000.0, 68000.0, 71000.0}, {"Chocolate", "Caramel"}, {"Tall", "Grande", "Venti"}}
+        // Add other coffee menus here
     };
 
-    // Sorting menu menggunakan Bubble Sort
     for (int i = 0; i < MAX_MENU - 1; i++) {
         for (int j = 0; j < MAX_MENU - i - 1; j++) {
             if (menu[j].nama > menu[j + 1].nama) {
@@ -111,24 +81,22 @@ int main() {
             }
         }
     }
-
-    // Menampilkan menu
-    cout << "Menu:\n";
-    cout << setw(4) << left << "No" << setw(20) << left << "Nama Menu" << setw(15) << right << "\t\tHarga" << endl;
-    cout << "--------------------------------------------------" << endl;
+    cout << "|\t\tMenu\t\t\t\t\t Tall\t\tGrande\t\t Venti\t\t\n";
+    cout << "--------------------------------------------------------------------\n";
     for (int i = 0; i < MAX_MENU; i++) {
-        cout << setw(4) << left << i + 1;
-        cout << setw(20) << left << menu[i].nama;
-        cout << setw(15) << right << "Rp" << fixed << setprecision(2) << menu[i].harga << endl;
+        cout << "| " << i + 1 << ". " << menu[i].nama;
+        for (int j = 0; j < 3; j++) {
+            cout << "Rp" << menu[i].harga[j] << "\t\t";
+        }
+        cout << "\n";
     }
+    cout << "\n";
 
-
-    // Memilih fitur awal (Menu / Cari Kopi)
     int fiturAwal;
-    cout << "\nFitur Awal:\n";
-    cout << "1. Menu\n";
+    cout << "\n";
+    cout << "1. Pesan\n";
     cout << "2. Cari Kopi\n";
-    cout << "Pilihan (1/2): ";
+    cout << "Pilihan (1/2)\t\t: ";
     cin >> fiturAwal;
 
     while (fiturAwal != 1 && fiturAwal != 2) {
@@ -137,153 +105,145 @@ int main() {
     }
 
     if (fiturAwal == 1) {
-        // Menginisialisasi pilihan dan jumlah pesanan
-        const int MAX_PESANAN = 10;  // Jumlah maksimum pesanan
+        const int MAX_PESANAN = 10;
         int pilihan[MAX_PESANAN];
         int jumlah[MAX_PESANAN];
-
-        // Meminta pengguna memasukkan pesanan
-        char lanjutkan;
         int jumlahPesanan = 0;
+        char lanjutkan = 'y';
+
         do {
             int pilihanMenu;
+            int jumlahPesananMenu;
 
-            cout << "Masukkan nomor menu yang dipilih: ";
+            cout << "\nPilih Kopi(1-10)\t: ";
             cin >> pilihanMenu;
 
-            while (pilihanMenu <= 0 || pilihanMenu > MAX_MENU) {
-                cout << "Pilihan tidak valid. Masukkan nomor menu yang dipilih: ";
+            // Validasi nomor menu
+            while (pilihanMenu < 1 || pilihanMenu > MAX_MENU) {
+                cout << "Nomor menu tidak valid. Masukkan nomor menu yang ingin Anda pesan: ";
                 cin >> pilihanMenu;
             }
 
-           // Menampilkan menu untuk memilih ukuran gelas
             int index = pilihanMenu - 1;
-            cout << "\nPilih Ukuran Gelas Untuk " << menu[index].nama << ":\n";
-            cout << setw(4) << left << "No" << setw(20) << left << "Ukuran Gelas" << setw(15) << right << "\t\tHarga" << endl;
-            cout << "-----------------------------------------------" << endl;
-            for (int i = 0; i < menu[index].ukuranGelas.size(); i++) {
-                cout << setw(4) << left << i + 1;
-                cout << setw(20) << left << menu[index].ukuranGelas[i];
-                cout << setw(15) << right << "Rp" << fixed << setprecision(2) << (i + 1) * 1000.0 << endl;
-            }
 
-            cout << "Masukkan Ukuran Gelas yang Anda Pilih: ";
-            cin >> jumlah[jumlahPesanan];
+            cout << "Ukuran gelas (1-3)\t: ";
+            cin >> jumlahPesananMenu;
 
             // Menampilkan menu toping untuk menu kopi yang dipilih
-            cout << "\nMenu Toping untuk " << menu[index].nama << ":\n";
-            cout << setw(4) << left << "No" << setw(20) << left << "Topping" << setw(15) << right << "Harga" << endl;
-            cout << "-----------------------------------------------" << endl;
-            for (int i = 0; i < menu[index].toping.size(); i++) {
-                cout << setw(4) << left << i + 1;
-                cout << setw(20) << left << menu[index].toping[i];
-                cout << setw(15) << right << "Rp" << fixed << setprecision(2) << (i + 1) * 1000.0 << endl;
+            cout << "\nMenu Toping untuk " << menu[index].nama << "\n";
+            cout << "No   Topping                 Harga\n";
+            cout << "----------------------------------------\n";
+            for (int i = 0; i < 2; i++) {
+                cout << i + 1 << "    " << menu[index].toping[i] << "\t\t\t\tRp" << (i + 1) * 1000.0 << endl;
             }
-            cout << "Masukkan Topping yang Anda Inginkan: ";
-            cin >> jumlah[jumlahPesanan];
-            
-            pilihan[jumlahPesanan] = pilihanMenu;
+            cout << "Pilih Topping\t\t\t: ";
+            cin >> jumlahPesananMenu;
+
+            cout << "Masukkan jumlah pesanan\t: ";
+            cin >> jumlahPesananMenu;
+
+            // Validasi jumlah pesanan
+            while (jumlahPesananMenu <= 0) {
+                cout << "Jumlah pesanan tidak valid. Masukkan jumlah pesanan: ";
+                cin >> jumlahPesananMenu;
+            }
+
+            // Simpan nomor menu dan jumlah pesanan ke dalam array
+            pilihan[jumlahPesanan] = pilihanMenu - 1;
+            jumlah[jumlahPesanan] = jumlahPesananMenu;
+
             jumlahPesanan++;
 
-
-            cout << "Apakah Anda ingin menambah pesanan lain? (Y/N): ";
+            cout << "Apakah Anda ingin menambah pesanan? (Y/n): ";
             cin >> lanjutkan;
-        } while ((lanjutkan == 'Y' || lanjutkan == 'y') && jumlahPesanan < MAX_PESANAN);
+        } while (lanjutkan == 'y' || lanjutkan == 'Y');
 
-        // Menghitung total pembayaran sebelum pajak
-        double totalPembayaran = 0.0;
+        cout << "\nPesanan Anda:\n";
+        cout << "No\t\t\t\t\t\t\t\t Jumlah     Total Harga\n";
+        cout << "-----------------------------------------------------------\n";
+        double totalHarga = 0.0;
         for (int i = 0; i < jumlahPesanan; i++) {
-            int index = pilihan[i] - 1;
-            totalPembayaran += menu[index].harga * jumlah[i];
+            int nomorMenu = pilihan[i];
+            int jumlahPesananMenu = jumlah[i];
+
+            cout << i + 1 << "    " << menu[nomorMenu].nama << "    " << jumlahPesananMenu << "        Rp" << menu[nomorMenu].harga[0] * jumlahPesananMenu << ",-" << endl;
+
+            totalHarga += menu[nomorMenu].harga[0] * jumlahPesananMenu;
         }
+        cout << "-----------------------------------------------------------\n";
+        cout << "                              Total Harga\t: Rp" << totalHarga << ",-" << endl;
 
-        // Menghitung pajak
-        double pajak = totalPembayaran * 0.05;
-
-        // Menghitung total pembayaran setelah pajak
-        double totalPembayaranSetelahPajak = totalPembayaran + pajak;
-
-        // Memilih metode pembayaran (tunai atau debit)
+        double pajak = totalHarga * 0.05;
+        double totalHargaPajak = totalHarga + pajak;
+        cout << "                              Pajak (5%)\t: Rp" << pajak << ",-" << endl;
+        cout << "                       Total Harga + Pajak\t: Rp" << totalHargaPajak << ",-" << endl;
+        
         char metodePembayaran;
         cout << "\nMetode Pembayaran:\n";
         cout << "1. Tunai\n";
         cout << "2. Debit\n";
-        cout << "Pilih metode pembayaran (1/2): ";
+        cout << "3. QRIS\n";
+        cout << "Pilih metode pembayaran (1/2/3): ";
         cin >> metodePembayaran;
 
-        while (metodePembayaran != '1' && metodePembayaran != '2') {
+        while (metodePembayaran != '1' && metodePembayaran != '2' && metodePembayaran!= '3') {
             cout << "Pilihan tidak valid. Pilih metode pembayaran (1/2): ";
             cin >> metodePembayaran;
         }
 
-        // Menginput nama pemesan
-        string namaPemesan;
-        cout << "Masukkan nama pemesan: ";
+        Order order;
+        cout << "\nMasukkan nama Anda: ";
         cin.ignore();
-        getline(cin, namaPemesan);
+        getline(cin, order.nama);
 
-        // Membuat nomor antrian dengan menggunakan queue
-        queue<Order> antrian;
-        time_t now = time(0);
-        for (int i = 1; i <= jumlahPesanan; i++) {
-            Order pesanan;
-            pesanan.nama = namaPemesan;
-            pesanan.nomorAntrian = i;
-            pesanan.waktuPemesanan = now;
-            antrian.push(pesanan);
-        }
+        order.nomorAntrian = rand() % 100 + 1;
 
-        // Menampilkan struk pembayaran
-        cout << "==================================================\n";
-        cout << "================= Struk Pembayaran ===============\n";
+        time(&order.waktuPemesanan);
+
+        cout << "Terima kasih, " << order.nama << ". Pesanan Anda sedang diproses.\n";
+        cout << "Nomor Antrian Anda: " << order.nomorAntrian << endl;
+        cout << "Waktu Pemesanan: " << ctime(&order.waktuPemesanan);
+
+        string kodePembayaran = generatePaymentCode();
+        cout << "Kode Pembayaran: " << kodePembayaran << endl;
+
+        cout << "\n============= Struk Pembayaran ==============\n";
         for (int i = 0; i < jumlahPesanan; i++) {
-            int index = pilihan[i] - 1;
-            cout << setw(15) << left << menu[index].nama << setw(19) << right << jumlah[i] << " x Rp" << fixed << setprecision(2) << menu[index].harga << endl;
-        }
-        cout << "==================================================\n";
-        cout << setw(15) << left << "Total Pembayaran:" << setw(22) << right << "Rp" << fixed << setprecision(2) << totalPembayaran << endl;
-        cout << setw(15) << left << "Pajak (5%):" << setw(24) << right << "Rp" << fixed << setprecision(2) << pajak << endl;
-        cout << setw(15) << left << "Total :" << setw(24) << right << "Rp" << fixed << setprecision(2) << totalPembayaranSetelahPajak << endl;
-        cout << "==================================================\n";
-        cout << "Metode Pembayaran: " << (metodePembayaran == '1' ? "Tunai" : "Debit") << endl;  
-        cout << "==================================================";
-        
-        // Menampilkan antrian pemesanan
-        LinkedList list;
-        while (!antrian.empty()) {
-            list.insert(antrian.front());
-            antrian.pop();
-        }
-        cout << "\nPemesan";
-        list.display();
-    } else if (fiturAwal == 2) {
-        // Mencari kopi berdasarkan nama
-        string cariKopi;
-        cout << "Masukkan nama kopi yang ingin dicari: ";
-        cin.ignore();
-        getline(cin, cariKopi);
+            int nomorMenu = pilihan[i];
+            int jumlahPesananMenu = jumlah[i];
 
-        int index = binarySearch(menu, 0, MAX_MENU - 1, cariKopi);
-        if (index != -1) {
-            cout << "Kopi ditemukan!\n";
-            cout << "Nama: " << menu[index].nama << endl;
-            cout << "Harga: Rp" << fixed << setprecision(2) << menu[index].harga << endl;
-            cout << "Toping:\n";
-            for (int i = 0; i < menu[index].toping.size(); i++) {
-                cout << i + 1 << ". " << menu[index].toping[i] << endl;
-            }
-        } else {
-            cout << "Kopi tidak ditemukan.\n";
+            cout << menu[nomorMenu].nama << jumlahPesananMenu << " x Rp" << menu[nomorMenu].harga[0] << endl;
         }
-    }   
-    
-        // Generate payment code
-        cout << "==================================================\n";
-        string paymentCode = generatePaymentCode();
-        cout << "kode pemesanan: " << paymentCode << endl;
-        cout << "==================================================\n";
-    
-    
+        cout << "=============================================\n";
+        cout << "Total Pembayaran\t\t\t: Rp" << totalHarga << ",-" <<endl;
+        cout << "Pajak (5%)\t\t\t\t\t: Rp" << pajak << ",-" << endl;
+        cout << "\nTotal\t\t\t\t\t\t: Rp" << totalHargaPajak << ",-" << endl;
+        cout << "=============================================\n";
+        cout << "Metode Pembayaran\t: " << (metodePembayaran == '1' ? "Tunai" : (metodePembayaran == '2' ? "Debit" : "QRIS")) << endl;
+        cout << "Nama Pemesan\t\t: " << order.nama << endl;
+        cout << "Nomor Antrian\t\t: EM" << order.nomorAntrian << endl;
+        cout << "Waktu Pemesanan\t\t: " << ctime(&order.waktuPemesanan);
+        cout << "=============================================\n";
+        
+    } else if (fiturAwal == 2) {
+        string namaKopi;
+        cout << "Masukkan nama kopi yang ingin Anda cari: ";
+        cin.ignore();
+        getline(cin, namaKopi);
+
+        // Mencari menu berdasarkan nama menggunakan sequential search
+        int searchIndex = sequentialSearch(dbmenu, db_coffee, namaKopi);
+        if (searchIndex != -1) {
+            cout << "\nMenu " << namaKopi << " ditemukan pada indeks ke-" << searchIndex + 1 << endl;
+            cout << "Harga (Tall): " << dbmenu[searchIndex].db_harga[0] << endl;
+            cout << "Harga (Grande): " << dbmenu[searchIndex].db_harga[1] << endl;
+            cout << "Harga (Venti): " << dbmenu[searchIndex].db_harga[2] << endl;
+            cout << "Toping: " << dbmenu[searchIndex].db_toping[0] << ", " << dbmenu[searchIndex].db_toping[1] << endl;
+            cout << "Ukuran Gelas: " << dbmenu[searchIndex].db_ukuranGelas[0] << ", " << dbmenu[searchIndex].db_ukuranGelas[1] << ", " << dbmenu[searchIndex].db_ukuranGelas[2] << endl;
+        } else {
+            cout << "\nKopi " << namaKopi << " tidak ditemukan" << endl;
+        }
+    }
+
     return 0;
 }
-
