@@ -141,8 +141,8 @@ int main() {
             }
         }
     }
-    cout << "|\t\tMenu\t\t\t Tall\t\tGrande\t\t Venti\t\t\n";
-    cout << "--------------------------------------------------------------------\n";
+    cout << "|\t\tMenu\t\t\t Tall(1)\tGrande(2)\t Venti(3)\t\n";
+    cout << "----------------------------------------------------------------------------------\n";
     for (int i = 0; i < MAX_MENU; i++) {
         cout << "| " << i + 1 << ". " << dbmenu[i].db_nama;
         for (int j = 0; j < 3; j++) {
