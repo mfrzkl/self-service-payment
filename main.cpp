@@ -258,14 +258,12 @@ int main() {
             
             char metodePembayaran;
             cout << "\nMetode Pembayaran:\n";
-            cout << "1. Tunai\n";
-            cout << "2. Debit\n";
-            cout << "3. QRIS\n";
-            cout << "Pilih metode pembayaran (1/2/3): ";
+            cout << "1. QRIS\n";
+            cout << "Pilih metode pembayaran: ";
             cin >> metodePembayaran;
 
-            while (metodePembayaran != '1' && metodePembayaran != '2' && metodePembayaran!= '3') {
-                cout << "Pilihan tidak valid. Pilih metode pembayaran (1/2): ";
+            while (metodePembayaran != '1') {
+                cout << "Pilihan tidak valid. Pilih metode pembayaran: ";
                 cin >> metodePembayaran;
             }
 
