@@ -73,21 +73,6 @@ void createQRCode(const std::string& text, const std::string& filename) {
     std::cout << "QR Code created and saved as " << filename << std::endl;
 }
 
-// void saveToPDF(const std::string& filename, const std::string& struk, const std::string& qrFilename) {
-//     PDFGen pdf;
-
-//     // Add the struk content to the PDF
-//     pdf.addText(struk, 10, 10, 10, PDFGen::Color::BLACK);
-
-//     // Add the QR Code image to the PDF
-//     pdf.addImage(qrFilename, 10, 100, 100, 100);
-
-//     // Save the PDF file
-//     pdf.saveToFile(filename);
-
-//     std::cout << "PDF file created and saved as " << filename << std::endl;
-// }
-
 int sequentialSearch(const Item arr[], int n, string key) {
     for (int i = 0; i < n; i++) {
         if (arr[i].nama == key) {
