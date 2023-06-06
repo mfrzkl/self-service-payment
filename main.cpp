@@ -282,7 +282,7 @@ int main() {
             cout << "Pajak (5%)" << setw(26) << "Rp" << pajak << ",-\n\n";
             cout << "\nTotal" << setw(31) << "Rp" << totalHargaPajak << ",-\n";
             cout << "=============================================\n";
-            cout << "Metode Pembayaran\t: " << (metodePembayaran == '1' ? "Tunai" : (metodePembayaran == '2' ? "Debit" : "QRIS")) << "\n";
+            cout << "Metode Pembayaran\t: " << (metodePembayaran == '1' ? "QRIS" : "Metode tidak valid!") << "\n";
             cout << "Nama Pemesan\t\t: " << order.nama << "\n";
             cout << "Nomor Antrian\t\t: EM" << order.nomorAntrian << "\n";
             cout << "Waktu Pemesanan\t\t: " << ctime(&order.waktuPemesanan);
@@ -303,7 +303,7 @@ int main() {
             struk += "Pajak (5%)                Rp" + to_string(static_cast<int>(pajak)) + ",-\n\n";
             struk += "\nTotal                   Rp" + to_string(static_cast<int>(totalHargaPajak)) + ",-\n";
             struk += "=============================================\n";
-            struk += "Metode Pembayaran\t: " + string(metodePembayaran == '1' ? "Tunai" : (metodePembayaran == '2' ? "Debit" : "QRIS")) + "\n";
+            struk += "Metode Pembayaran\t: " + string(metodePembayaran == '1' ? "QRIS" : "Metode tidak valid!") + "\n";
             struk += "Nama Pemesan\t\t: " + order.nama + "\n";
             struk += "Nomor Antrian\t\t: EM" + to_string(order.nomorAntrian) + "\n";
             struk += "Waktu Pemesanan\t\t: " + string(ctime(&order.waktuPemesanan));
