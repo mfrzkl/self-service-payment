@@ -10,7 +10,7 @@ Self Service Payment on Coffee Shop
 Introduction
 ------------
 
-Project Implementasi Sistem Self Service Payment Terhadap Coffee Shop dibuat untuk memenuhi tugas akhir mata kuliah praktikum algoritma dan pemrograman 2
+Project Implementasi Sistem Self Service Payment Terhadap Pemesanan Kopi dibuat untuk memenuhi tugas ujian akhir mata kuliah praktikum algoritma dan pemrograman 2
 
 Commands
 ------------
