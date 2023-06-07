@@ -70,7 +70,7 @@ void createQRCode(const std::string& text, const std::string& filename) {
     qrFile << qrSvg;
     qrFile.close();
 
-    std::cout << "QR Code created and saved as " << filename << std::endl;
+    // std::cout << "QR Code created and saved as " << filename << std::endl;
 }
 
 int sequentialSearch(const Item arr[], int n, string key) {
@@ -84,27 +84,8 @@ int sequentialSearch(const Item arr[], int n, string key) {
 
 int main() {
     cout << "Self Service System on Coffee Shop\n\n";
-
-    // const int db_coffee = 10;
-    const int MAX_MENU = 10;
-    // db dbmenu[db_coffee] 
-    Item menu[MAX_MENU] = {
-        {"Caramel Mocha", {49000.0, 52000.0, 55000.0}, {"Caramel", "Vanilla"}, {"Tall", "Grande", "Venti"}},
-        {"Green Tea", {50000.0, 53000.0, 56000.0}, {"Vanilla", "Cream"}, {"Tall", "Grande", "Venti"}},
-        {"Brewed Coffee", {48000.0, 51000.0, 54000.0}, {"Vanilla", "Caramel"}, {"Tall", "Grande", "Venti"}},
-        {"Caramel Macchiato", {59000.0, 62000.0, 65000.0}, {"Caramel", "Chocolate"}, {"Tall", "Grande", "Venti"}},
-        {"Java Chip Frappuccino", {58000.0, 61000.0, 64000.0}, {"Hazelnut", "Chocolate"}, {"Tall", "Grande", "Venti"}},
-        {"Signature Chocolate", {53000.0, 56000.0, 59000.0}, {"Caramel", "Chocolate"}, {"Tall", "Grande", "Venti"}},
-        {"Espresso", {50000.0, 53000.0, 56000.0}, {"Caramel", "Vanilla"}, {"Tall", "Grande", "Venti"}},
-        {"Cappuccino", {55000.0, 58000.0, 61000.0}, {"Chocolate", "Hazelnut"}, {"Tall", "Grande", "Venti"}},
-        {"Cafe Latte", {60000.0, 63000.0, 66000.0}, {"Caramel", "Vanilla", "Hazelnut"}, {"Tall", "Grande", "Venti"}},
-        {"Mocha", {65000.0, 68000.0, 71000.0}, {"Chocolate", "Caramel"}, {"Tall", "Grande", "Venti"}}
-        // Add other coffee menus here
-    };
     
     const int db_coffee = 10;
-    // const int MAX_MENU = 10;
-    // Item menu[MAX_MENU] 
     db dbmenu[db_coffee] = {
         {"Caramel Mocha\t\t\t", {49000.0, 52000.0, 55000.0}, {"Caramel", "Vanilla"}, {"Tall", "Grande", "Venti"}},
         {"Green Tea\t\t\t\t", {50000.0, 53000.0, 56000.0}, {"Vanilla", "Cream"}, {"Tall", "Grande", "Venti"}},
@@ -116,9 +97,9 @@ int main() {
         {"Cappuccino\t\t\t\t", {55000.0, 58000.0, 61000.0}, {"Chocolate", "Hazelnut"}, {"Tall", "Grande", "Venti"}},
         {"Cafe Latte\t\t\t\t", {60000.0, 63000.0, 66000.0}, {"Caramel", "Vanilla"}, {"Tall", "Grande", "Venti"}},
         {"Mocha\t\t\t\t", {65000.0, 68000.0, 71000.0}, {"Chocolate", "Caramel"}, {"Tall", "Grande", "Venti"}}
-        // Add other coffee menus here
     };
 
+    // Bubble sort untuk menu
     for (int i = 0; i < db_coffee - 1; i++) {
         for (int j = 0; j < db_coffee - i - 1; j++) {
             if (dbmenu[j].db_nama > dbmenu[j + 1].db_nama) {
@@ -126,6 +107,22 @@ int main() {
             }
         }
     }
+
+     // data yang sudah disort dengan bubble sort
+    const int MAX_MENU = 10;
+    Item menu[MAX_MENU] = {
+        {"Brewed Coffee", {48000.0, 51000.0, 54000.0}, {"Vanilla", "Caramel"}, {"Tall", "Grande", "Venti"}},
+        {"Cafe Latte", {60000.0, 63000.0, 66000.0}, {"Caramel", "Vanilla", "Hazelnut"}, {"Tall", "Grande", "Venti"}},
+        {"Cappuccino", {55000.0, 58000.0, 61000.0}, {"Chocolate", "Hazelnut"}, {"Tall", "Grande", "Venti"}},
+        {"Caramel Macchiato", {59000.0, 62000.0, 65000.0}, {"Caramel", "Chocolate"}, {"Tall", "Grande", "Venti"}},
+        {"Caramel Mocha", {49000.0, 52000.0, 55000.0}, {"Caramel", "Vanilla"}, {"Tall", "Grande", "Venti"}},
+        {"Espresso", {50000.0, 53000.0, 56000.0}, {"Caramel", "Vanilla"}, {"Tall", "Grande", "Venti"}},
+        {"Green Tea", {50000.0, 53000.0, 56000.0}, {"Vanilla", "Cream"}, {"Tall", "Grande", "Venti"}},
+        {"Java Chip Frappuccino", {58000.0, 61000.0, 64000.0}, {"Hazelnut", "Chocolate"}, {"Tall", "Grande", "Venti"}},
+        {"Mocha", {65000.0, 68000.0, 71000.0}, {"Chocolate", "Caramel"}, {"Tall", "Grande", "Venti"}},
+        {"Signature Chocolate", {53000.0, 56000.0, 59000.0}, {"Caramel", "Chocolate"}, {"Tall", "Grande", "Venti"}}
+    };
+
     cout << "|\t\tMenu\t\t\t Tall(1)\tGrande(2)\t Venti(3)\t\n";
     cout << "----------------------------------------------------------------------------------\n";
     for (int i = 0; i < MAX_MENU; i++) {
@@ -155,6 +152,7 @@ int main() {
         int jumlah[MAX_PESANAN];
         int jumlahPesanan = 0;
         double totalHargaToping = 0.0;
+        int pilihanGelas[MAX_PESANAN];
         char lanjutkan = 'y';
 
         do {
@@ -174,7 +172,12 @@ int main() {
             int index = pilihanMenu - 1;
 
             cout << "Ukuran gelas (1-3)\t: ";
-            cin >> jumlahPesananMenu;
+            cin >> pilihanGelas[jumlahPesanan];
+
+            while (pilihanGelas[jumlahPesanan] < 1 || pilihanGelas[jumlahPesanan] > 3) {
+            cout << "Nomor gelas tidak valid. Masukkan nomor gelas yang ingin Anda pesan: ";
+            cin >> pilihanGelas[jumlahPesanan];
+            }
 
             // Menampilkan menu toping untuk menu kopi yang dipilih
             cout << "\nMenu Toping yang tersedia: " << "\n";;
@@ -194,9 +197,9 @@ int main() {
             }
 
             if (pilihanToping == 1) {
-                totalHargaToping = toping1 * jumlahPesananMenu;
+                totalHargaToping = toping1;
             } else if (pilihanToping == 2) {
-                totalHargaToping = toping2 * jumlahPesananMenu;
+                totalHargaToping = toping2;
             }
 
             cout << "Masukkan jumlah pesanan\t: ";
@@ -227,11 +230,11 @@ int main() {
                 nomorMenu = pilihan[i];
                 jumlahPesananMenu = jumlah[i];
 
-                cout << menu[nomorMenu].nama << setw(25) << jumlahPesananMenu << setw(10) <<"Rp" << menu[nomorMenu].harga[0] * jumlahPesananMenu << ",-" << endl;
+                cout << menu[nomorMenu].nama << setw(25) << jumlahPesananMenu << setw(10) <<"Rp" 
+                << menu[nomorMenu].harga[pilihanGelas[i] - 1] * jumlahPesananMenu << ",-" << endl;
 
-                totalHarga += totalHargaToping + menu[nomorMenu].harga[0] * jumlahPesananMenu;
-                cout << "(" << menu[nomorMenu].ukuranGelas[jumlahPesananMenu - 1] << ")" << "\n";
-                // totalHarga += (menu[nomorMenu].harga[jumlahPesananMenu - 1] + totalHargaToping) * jumlahPesananMenu;
+                totalHarga += (menu[nomorMenu].harga[pilihanGelas[i] - 1] + totalHargaToping) * jumlahPesananMenu;
+                cout << "(" << menu[nomorMenu].ukuranGelas[pilihanGelas[i] - 1] << ")" << "\n";
             }
             cout << "-----------------------------------------------------------\n";
             cout << "                              Total Harga\t: Rp" << totalHarga << ",-" << endl;
@@ -273,8 +276,8 @@ int main() {
                 int nomorMenu = pilihan[i];
                 int jumlahPesananMenu = jumlah[i];
 
-                cout << menu[nomorMenu].nama << "(" << menu[nomorMenu].ukuranGelas[jumlahPesananMenu - 1] << ")" << setw(15)
-                    << jumlahPesananMenu << " x Rp" << menu[nomorMenu].harga[0] << "\n";
+                cout << menu[nomorMenu].nama << "(" << menu[nomorMenu].ukuranGelas[pilihanGelas[i] - 1] << ")" << setw(15)
+                    << jumlahPesananMenu << " x Rp" << menu[nomorMenu].harga[pilihanGelas[i] - 1] << "\n";
                 cout << "  -toping\n";
             }
             cout << "=============================================\n";
@@ -286,7 +289,7 @@ int main() {
             cout << "Nama Pemesan\t\t: " << order.nama << "\n";
             cout << "Nomor Antrian\t\t: EM" << order.nomorAntrian << "\n";
             cout << "Waktu Pemesanan\t\t: " << ctime(&order.waktuPemesanan);
-            cout << "==============  Terima Kasih  ==============\n";
+            cout << "==============  Terima Kasih  ===============\n";
 
             string struk;
             struk += "\n============= Struk Pembayaran ==============\n";
@@ -294,8 +297,8 @@ int main() {
                 int nomorMenu = pilihan[i];
                 int jumlahPesananMenu = jumlah[i];
 
-                struk += menu[nomorMenu].nama + "(" + menu[nomorMenu].ukuranGelas[jumlahPesananMenu - 1] + ")" + "\t\t\t"
-                    + to_string(static_cast<int>(jumlahPesananMenu)) + " x Rp" + to_string(static_cast<int>(menu[nomorMenu].harga[0])) + "\n";
+                struk += menu[nomorMenu].nama + "(" + menu[nomorMenu].ukuranGelas[pilihanGelas[i] - 1] + ")" + "\t\t\t"
+                    + to_string(static_cast<int>(jumlahPesananMenu)) + " x Rp" + to_string(static_cast<int>(menu[nomorMenu].harga[pilihanGelas[i] - 1])) + "\n";
                 struk += "  -toping\n";
             }
             struk += "=============================================\n";
@@ -325,11 +328,10 @@ int main() {
         int searchIndex = sequentialSearch(menu, MAX_MENU, namaKopi);
         if (searchIndex != -1) {
             cout << "\nMenu " << namaKopi << " ditemukan pada indeks ke-" << searchIndex + 1 << endl;
-            cout << "Harga (Tall): " << menu[searchIndex].harga[0] << endl;
-            cout << "Harga (Grande): " << menu[searchIndex].harga[1] << endl;
-            cout << "Harga (Venti): " << menu[searchIndex].harga[2] << endl;
-            cout << "Toping: " << menu[searchIndex].toping[0] << ", " << menu[searchIndex].toping[1] << endl;
-            cout << "Ukuran Gelas: " << menu[searchIndex].ukuranGelas[0] << ", " << menu[searchIndex].ukuranGelas[1] << ", " << menu[searchIndex].ukuranGelas[2] << endl;
+            cout << "Harga (Tall)\t: " << "Rp" << menu[searchIndex].harga[0] << endl;
+            cout << "Harga (Grande)\t: " << "Rp" << menu[searchIndex].harga[1] << endl;
+            cout << "Harga (Venti)\t: " << "Rp" << menu[searchIndex].harga[2] << endl;
+            cout << "Toping\t\t: " << menu[searchIndex].toping[0] << ", " << menu[searchIndex].toping[1] << endl;
         } else {
             cout << "\nKopi " << namaKopi << " tidak ditemukan" << endl;
         }
