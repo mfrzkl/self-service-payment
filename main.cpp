@@ -177,7 +177,7 @@ int main() {
             cin >> jumlahPesananMenu;
 
             // Menampilkan menu toping untuk menu kopi yang dipilih
-            cout << "\nMenu Toping untuk " << menu[index].nama << "\n";
+            cout << "\nMenu Toping yang tersedia: " << "\n";;
             cout << "No   Topping                 Harga\n";
             cout << "----------------------------------------\n";
             for (int i = 0; i < 2; i++) {
