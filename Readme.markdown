@@ -40,49 +40,68 @@ Examples
 --------
 
 ```
-     (  )   (   )  )
-      ) (   )  (  (
-      ( )  (    ) )
-      _____________
-     <_____________> ___
-     |             |/ _ \
-     |               | | |
-     |               |_| |
-  ___|             |\___/
- /    \___________/    \
- \___________________/   
- Selamat datang di Coffee Shop
-_________________________________________________________
-|           Menu               Tall    Grande     Venti  |
-|________________________________________________________|
-| 1. Brewed Coffe               48        51        54   |
-| 2. Cafe Latte                 54        57        60   |    
-| 3. Cappuccino                 55        58        61   |
-| 4. Caramel Macchiato          56        59        62   |  
-| 5. Caramel Mocha              49        52        55   |
-| 6. Espresso                   50        53        56   |
-| 7. Green Tea                  50        53        56   |
-| 8. Java Chip Frappucino       50        53        56   |
-| 9. Mocha                      65        68        71   |
-| 10. Signature Chocolate       53        56        59   |
-|________________________________________________________|
+Self Service System on Coffee Shop
+
+|               Menu                     Tall(1)        Grande(2)        Venti(3)
+----------------------------------------------------------------------------------
+| 1. Brewed Coffee                      Rp48000         Rp51000         Rp54000
+| 2. Cafe Latte                         Rp60000         Rp63000         Rp66000
+| 3. Cappuccino                         Rp55000         Rp58000         Rp61000
+| 4. Caramel Macchiato                  Rp59000         Rp62000         Rp65000
+| 5. Caramel Mocha                      Rp49000         Rp52000         Rp55000
+| 6. Espresso                           Rp50000         Rp53000         Rp56000
+| 7. Green Tea                          Rp50000         Rp53000         Rp56000
+| 8. Java Chip Frappuccino              Rp58000         Rp61000         Rp64000
+| 9. Mocha                              Rp65000         Rp68000         Rp71000
+| 10. Signature Chocolate               Rp53000         Rp56000         Rp59000
+
+
 1. Pesan
 2. Cari Kopi
-Pilih (1/2): 
+Pilihan (1/2)           :
 ```
 ```
-========== Struk Pembayaran ==============
-Brewed Coffe            1 x Rp48,000
-Cafe Latte              1 x Rp57,000
-==========================================
-Total Pembayaran:        Rp48,000
-Pajak (5%):              Rp2,400
+Menu Toping yang tersedia:
+No   Topping                 Harga
+----------------------------------------
+1    Hazelnut               Rp1000
+2    Chocolate              Rp2000
+```
+```
+Pesanan Anda:
+No                               Jumlah     Total Harga
+-----------------------------------------------------------
+Java Chip Frappuccino               1        Rp64000,-
+(Venti)
+Cafe Latte                          1        Rp60000,-
+(Tall)
+-----------------------------------------------------------
+                              Total Harga       : Rp126000,-
+                              Pajak (5%)        : Rp6300,-
+                       Total Harga + Pajak      : Rp132300,-
+
+Metode Pembayaran:
+1. QRIS
+Pilih metode pembayaran:
+```
+```
+============= Struk Pembayaran ==============
+Java Chip Frappuccino(Venti)              1 x Rp64000
+  -toping
+Cafe Latte(Tall)              1 x Rp60000
+  -toping
+=============================================
+Total Pembayaran                  Rp126000,-
+Pajak (5%)                        Rp6300,-
 
 
-Total                    Rp50,400
-==========================================
-Metode Pembayaran: QRIS
-Nama Pemesan: Miftah
-Nomor Antrian: M03
-Waktu Pemesanan: Mon May 29 12:40:05 2023
-==========================================
+Total                             Rp132300,-
+=============================================
+Metode Pembayaran       : QRIS
+Nama Pemesan            : miftah
+Nomor Antrian           : EM42
+Waktu Pemesanan         : Wed Jun 07 17:56:04 2023
+==============  Terima Kasih  ===============
+
+Struk berhasil diprint! Terima kasih!
+```
