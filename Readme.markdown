@@ -1,12 +1,3 @@
-Self Service Payment on Coffee Shop
-===================================
-1. Miftah Rizky Aulia               (2210511022)
-2. Muhammad Dihya Al Qalby          (2210511035)
-3. Sufyan Al Afi                    (2210511005)
-4. Nada Nabila                      (2210511020)
-5. Firda Fahria                     (2210511013)
-6. Samuel Alexander Mozes Tambunan  (2210511032)
-
 Introduction
 ------------
 
