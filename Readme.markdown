@@ -1,7 +1,7 @@
 Introduction
 ------------
 
-Project Implementasi Sistem Self Service Payment Terhadap Pemesanan Kopi dibuat untuk memenuhi tugas ujian akhir mata kuliah praktikum algoritma dan pemrograman 2
+Project Implementasi Sistem Self Service Payment Terhadap Pemesanan Kopi dibuat untuk memenuhi tugas ujian akhir semester mata kuliah praktikum algoritma dan pemrograman 2
 
 Commands
 ------------
